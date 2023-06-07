@@ -72,5 +72,8 @@
         "**/vue/*.vue": [
             "vue-cli-service lint"
         ]
+    },
+    "dependencies": {
+        "@arcgis/core": "^4.26.5"
     }
 }

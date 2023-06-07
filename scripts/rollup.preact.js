@@ -3,6 +3,7 @@ import commonjs from "@rollup/plugin-commonjs";
 import resolve from "@rollup/plugin-node-resolve";
 
 export default {
+    inlineDynamicImports: true,
     input: "src/preact/main.js",
     treeshake: true,
     output: {
