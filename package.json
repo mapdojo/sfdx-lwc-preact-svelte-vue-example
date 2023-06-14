@@ -5,6 +5,7 @@
     "description": "Example for showcasing Preact, and Svelte, and Vue within a Salesforce org",
     "scripts": {
         "build": "run-p build:preact build:svelte build:vue",
+        "build:arcgis": "rollup -c scripts/rollup.arcgis.js",
         "build:preact": "rollup -c scripts/rollup.preact.js",
         "build:svelte": "rollup -c scripts/rollup.svelte.js",
         "build:vue": "rollup -c scripts/rollup.vue.js",
