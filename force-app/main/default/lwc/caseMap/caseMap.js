@@ -1,8 +1,8 @@
 import { LightningElement } from "lwc";
 import { ShowToastEvent } from "lightning/platformShowToastEvent";
-import { loadScript, loadStyle } from "lightning/platformResourceLoader";
-//import { loadScript } from 'c/resourceLoader';
-import MAPLIBRE from "@salesforce/resourceUrl/maplibre";
+import { loadStyle } from "lightning/platformResourceLoader";
+import { loadScript } from "c/resourceLoader";
+import LEAFLET from "@salesforce/resourceUrl/leaflet";
 
 export default class CaseMap extends LightningElement {
     map = null;
@@ -14,8 +14,8 @@ export default class CaseMap extends LightningElement {
         this.d3Initialized = true;
 
         Promise.all([
-            loadScript(this, MAPLIBRE + "/maplibre-gl-csp.js"),
-            loadStyle(this, MAPLIBRE + "/maplibre-gl.css")
+            loadScript(this, LEAFLET + "/leaflet.js"),
+            loadStyle(this, LEAFLET + "/leaflet.css")
         ])
             .then(() => {
                 this.initializeMapLibre();
@@ -32,25 +32,18 @@ export default class CaseMap extends LightningElement {
     }
 
     initializeMapLibre() {
-        // this.dispatchEvent(
-        //     new ShowToastEvent({
-        //         title: 'LALA',
-        //         message: 'LALA',
-        //         variant: 'error'
-        //     })
-        // );
         try {
             const mapDiv = this.template.querySelector("div.map");
             console.debug("LA");
             // eslint-disable-next-line no-undef
-            this.map = new maplibregl.Map({
-                container: mapDiv, // container id
-                style:
-                    "https://api.maptiler.com/maps/streets/style.json?key=get_your_own_OpIi9ZULNHzrESv6T2vL",
-                center: [12.550343, 55.665957],
-                zoom: 8
-            });
+            this.map = L.map(mapDiv).setView([51.505, -0.09], 13);
             console.debug("LALA");
+            L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+                maxZoom: 19,
+                attribution:
+                    '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }).addTo(this.map);
+            console.debug("LALALA");
         } catch (error) {
             console.error(error.message);
         }

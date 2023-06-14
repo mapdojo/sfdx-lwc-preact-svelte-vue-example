@@ -74,6 +74,7 @@
         ]
     },
     "dependencies": {
-        "@arcgis/core": "^4.26.5"
+        "@arcgis/core": "^4.26.5",
+        "leaflet": "^1.9.4"
     }
 }
