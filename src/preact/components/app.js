@@ -1,6 +1,5 @@
 // `h` doesn't seemed to be used, but it is key for the Babel transform.
 import { h, Component } from "preact";
-import WebMap from "./webmap/WebMap";
 
 import List from "./list";
 
@@ -12,7 +11,6 @@ export default class App extends Component {
                 <br />
                 <br />
                 <List />
-                <WebMap />
             </div>
         );
     }
