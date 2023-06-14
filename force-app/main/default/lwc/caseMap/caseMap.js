@@ -1,24 +1,24 @@
 import { LightningElement } from "lwc";
 import { ShowToastEvent } from "lightning/platformShowToastEvent";
-import { loadStyle } from "lightning/platformResourceLoader";
-import { loadScript } from "c/resourceLoader";
+import { loadScript, loadStyle } from "lightning/platformResourceLoader";
+// import { loadScript } from "c/resourceLoader";
 import LEAFLET from "@salesforce/resourceUrl/leaflet";
 
 export default class CaseMap extends LightningElement {
     map = null;
 
     renderedCallback() {
-        if (this.d3Initialized) {
+        if (this.mapInitialized) {
             return;
         }
-        this.d3Initialized = true;
+        this.mapInitialized = true;
 
         Promise.all([
             loadScript(this, LEAFLET + "/leaflet.js"),
             loadStyle(this, LEAFLET + "/leaflet.css")
         ])
             .then(() => {
-                this.initializeMapLibre();
+                this.initializeMap();
             })
             .catch((error) => {
                 this.dispatchEvent(
@@ -31,7 +31,7 @@ export default class CaseMap extends LightningElement {
             });
     }
 
-    initializeMapLibre() {
+    initializeMap() {
         try {
             const mapDiv = this.template.querySelector("div.map");
             console.debug("LA");
