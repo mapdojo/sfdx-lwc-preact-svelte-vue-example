@@ -14,8 +14,8 @@ export default class CaseMapArcGis extends LightningElement {
         this.mapInitialized = true;
 
         Promise.all([
-            loadScript(this, ARCGIS + "/arcgis.js")
-            //loadStyle(this, ARCGIS + "/core/assets/esri/themes/light/main.css")
+            loadScript(this, ARCGIS + "/arcgis.js"),
+            loadStyle(this, ARCGIS + "/core/assets/esri/themes/light/main.css")
         ])
             .then(() => {
                 this.initializeMap();
