@@ -1,6 +1,7 @@
 import { LightningElement } from "lwc";
 import { ShowToastEvent } from "lightning/platformShowToastEvent";
 import { loadScript, loadStyle } from "lightning/platformResourceLoader";
+// import { loadScript } from "c/resourceLoader";
 import LEAFLET from "@salesforce/resourceUrl/leaflet";
 
 export default class CaseMap extends LightningElement {
@@ -14,6 +15,8 @@ export default class CaseMap extends LightningElement {
 
         Promise.all([
             loadScript(this, LEAFLET + "/leaflet.js"),
+            // loadScript(this, LEAFLET + "/esri-leaflet.js"),
+            // loadScript(this, LEAFLET + "/esri-leaflet-vector.js"),
             loadStyle(this, LEAFLET + "/leaflet.css")
         ])
             .then(() => {
@@ -35,6 +38,11 @@ export default class CaseMap extends LightningElement {
             const mapDiv = this.template.querySelector("div.map");
             console.debug("LA");
             this.map = L.map(mapDiv).setView([51.505, -0.09], 13);
+
+            // const token = "jwWhzQEZfSXMwld2QC09iqkZb59FLfK-Ydpc0Tw9glE2-tzhQRVm1IrBwFxviYh9WEJGLT5FzjzNFB14bs3YDMT9j_KKiMllP5Vgzgb9WAoGnRnwAZ43mgvud_JFye_gu90FAQwMLa-ZeOzQc7UtAQ..";
+            // L.esri.Vector.vectorBasemapLayer("OSM:StandardRelief", {
+            //     token: token
+            //   }).addTo(this.map);
 
             L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
                 attribution:
