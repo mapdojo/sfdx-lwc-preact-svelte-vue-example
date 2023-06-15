@@ -2,7 +2,7 @@ import { LightningElement } from "lwc";
 import { ShowToastEvent } from "lightning/platformShowToastEvent";
 import { loadScript, loadStyle } from "lightning/platformResourceLoader";
 // import { loadScript } from "c/resourceLoader";
-import ARCGIS from "@salesforce/resourceUrl/arcgis";
+import MAPLIBRE from "@salesforce/resourceUrl/maplibre";
 
 export default class CaseMap extends LightningElement {
     map = null;
@@ -14,8 +14,8 @@ export default class CaseMap extends LightningElement {
         this.mapInitialized = true;
 
         Promise.all([
-            loadScript(this, ARCGIS + "/arcgis.js"),
-            loadStyle(this, ARCGIS + "/core/assets/esri/themes/light/main.css")
+            loadScript(this, MAPLIBRE + "/maplibre-gl-csp.js"),
+            loadStyle(this, MAPLIBRE + "/maplibre-gl.css")
         ])
             .then(() => {
                 this.initializeMap();
@@ -35,13 +35,11 @@ export default class CaseMap extends LightningElement {
         try {
             const mapDiv = this.template.querySelector("div.map");
             console.debug("LA");
-            const webmap = new ArcGis.WebMap({
-                portalItem: {
-                    id: "974c6641665a42bf8a57da08e607bb6f"
-                }
-            });
-            const view = new ArcGis.MapView({
-                map: webmap
+            this.map = new maplibregl.Map({
+                container: mapDiv, // container id
+                style: MAPLIBRE + "/style.json", // style URL
+                center: [0, 0], // starting position [lng, lat]
+                zoom: 1 // starting zoom
             });
             // eslint-disable-next-line no-undef
             // this.map = L.map(mapDiv).setView([51.505, -0.09], 13);
