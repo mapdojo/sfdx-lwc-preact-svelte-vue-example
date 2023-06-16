@@ -15,8 +15,8 @@ export default class CaseMapLeaflet extends LightningElement {
 
         Promise.all([
             loadScript(this, LEAFLET + "/leaflet.js"),
-            // loadScript(this, LEAFLET + "/esri-leaflet.js"),
-            // loadScript(this, LEAFLET + "/esri-leaflet-vector.js"),
+            loadScript(this, LEAFLET + "/esri-leaflet.js"),
+            loadScript(this, LEAFLET + "/esri-leaflet-vector.js"),
             loadStyle(this, LEAFLET + "/leaflet.css")
         ])
             .then(() => {
