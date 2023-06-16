@@ -37,7 +37,7 @@ export default class CaseMapLeaflet extends LightningElement {
         try {
             const mapDiv = this.template.querySelector("div.map");
             console.debug("LA");
-            this.map = L.map(mapDiv).setView([51.505, -0.09], 13);
+            this.map = L.map(mapDiv).setView([-37.7916, 144.8779], 13);
 
             // const token = "jwWhzQEZfSXMwld2QC09iqkZb59FLfK-Ydpc0Tw9glE2-tzhQRVm1IrBwFxviYh9WEJGLT5FzjzNFB14bs3YDMT9j_KKiMllP5Vgzgb9WAoGnRnwAZ43mgvud_JFye_gu90FAQwMLa-ZeOzQc7UtAQ..";
             // L.esri.Vector.vectorBasemapLayer("OSM:StandardRelief", {
@@ -49,10 +49,9 @@ export default class CaseMapLeaflet extends LightningElement {
                     '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(this.map);
 
-            L.marker([51.5, -0.09])
-                .addTo(this.map)
-                .bindPopup("A pretty CSS popup.<br> Easily customizable.")
-                .openPopup();
+            L.marker([-37.7916, 144.8779]).addTo(this.map);
+            //.bindPopup("A pretty CSS popup.<br> Easily customizable.")
+            //.openPopup();
             console.debug("LALA");
         } catch (error) {
             console.error(error.message);
