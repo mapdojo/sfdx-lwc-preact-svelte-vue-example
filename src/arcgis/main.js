@@ -6,6 +6,6 @@ import Zoom from "@arcgis/core/widgets/Zoom";
 import Attribution from "@arcgis/core/widgets/Attribution";
 import esriConfig from "@arcgis/core/config";
 
-esriConfig.assetsPath = "./core/assets";
+// esriConfig.assetsPath = "./core/assets";
 
 export { WebMap, MapView, Search, Popup, Zoom, Attribution, esriConfig };
