@@ -61,8 +61,8 @@ export default class CaseMapLibre extends LightningElement {
                         }
                     ]
                 },
-                center: [0, 0], // starting position [lng, lat]
-                zoom: 1 // starting zoom
+                center: [144.8779, -37.7916], // starting position [lng, lat]
+                zoom: 12 // starting zoom
             });
             console.debug("LALA");
         } catch (error) {
