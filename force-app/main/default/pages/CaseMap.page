@@ -37,14 +37,17 @@
             <script>
                 require([
                     "esri/config",
-                    "esri/Map",
-                    "esri/views/MapView"
-                ], function (esriConfig, Map, MapView) {
+                    "esri/WebMap",
+                    "esri/views/MapView",
+                    "esri/layers/FeatureLayer"
+                ], function (esriConfig, WebMap, MapView, FeatureLayer) {
                     esriConfig.apiKey =
                         "Pvdz0fe5a9LtIHO1z2npA1uDjizjyPuxAvUyngnnw8NxjH2X0nhFQFZy4GjNOyZx9_Pz7oYJWW3eGMJ_nM0MpibiqMCEMkoq42sZT8zNryFMqBf2NZF3c1bKG_CQa5VxcPlAls2542qa76uG95F9xQ..";
 
-                    const map = new Map({
-                        basemap: "arcgis-topographic" // Basemap layer service
+                    const map = new WebMap({
+                        portalItem: {
+                            id: "67bf77a05cd14087856ff68f585b054e"
+                        }
                     });
 
                     const view = new MapView({
@@ -53,6 +56,28 @@
                         zoom: 13, // Zoom level
                         container: "viewDiv" // Div element
                     });
+
+                    councilAreaLayer = new FeatureLayer({
+                        url:
+                            "https://services2.arcgis.com/PovBcp8J7VQYyDEI/arcgis/rest/services/Council_Area/FeatureServer/0",
+                        id: "councilAreaLayer",
+                        visible: true,
+                        definitionExpression: "lga_code = '341'",
+                        renderer: {
+                            type: "simple", // autocasts as new SimpleRenderer()
+                            symbol: {
+                                type: "simple-fill", // autocasts as new SimpleFillSymbol()
+                                color: { r: 0, g: 255, b: 0, a: 0.0 },
+                                outline: {
+                                    // autocasts as new SimpleLineSymbol()
+                                    width: 2,
+                                    color: "#00008B"
+                                }
+                            }
+                        }
+                    });
+
+                    map.add(councilAreaLayer, 0);
                 });
             </script>
         </head>
