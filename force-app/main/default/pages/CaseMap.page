@@ -1,6 +1,63 @@
-<apex:page>
-    <!-- Begin Default Content REMOVE THIS -->
-    <h1>Congratulations</h1>
-    This is your new Page
-    <!-- End Default Content REMOVE THIS -->
+<apex:page
+    showHeader="false"
+    sidebar="false"
+    standardStylesheets="false"
+    applyHtmlTag="false"
+    applyBodyTag="false"
+    docType="html-5.0"
+>
+    <html>
+        <head>
+            <meta charset="utf-8" />
+            <meta
+                name="viewport"
+                content="initial-scale=1, maximum-scale=1, user-scalable=no"
+            />
+            <title>
+                ArcGIS Maps SDK for JavaScript Tutorials: Display a map
+            </title>
+
+            <style>
+                html,
+                body,
+                #viewDiv {
+                    padding: 0;
+                    margin: 0;
+                    height: 100%;
+                    width: 100%;
+                }
+            </style>
+
+            <link
+                rel="stylesheet"
+                href="https://js.arcgis.com/4.27/esri/themes/light/main.css"
+            />
+            <script src="https://js.arcgis.com/4.27/"></script>
+
+            <script>
+                require([
+                    "esri/config",
+                    "esri/Map",
+                    "esri/views/MapView"
+                ], function (esriConfig, Map, MapView) {
+                    esriConfig.apiKey =
+                        "Pvdz0fe5a9LtIHO1z2npA1uDjizjyPuxAvUyngnnw8NxjH2X0nhFQFZy4GjNOyZx9_Pz7oYJWW3eGMJ_nM0MpibiqMCEMkoq42sZT8zNryFMqBf2NZF3c1bKG_CQa5VxcPlAls2542qa76uG95F9xQ..";
+
+                    const map = new Map({
+                        basemap: "arcgis-topographic" // Basemap layer service
+                    });
+
+                    const view = new MapView({
+                        map: map,
+                        center: [144.8779, -37.7916], // Longitude, latitude
+                        zoom: 13, // Zoom level
+                        container: "viewDiv" // Div element
+                    });
+                });
+            </script>
+        </head>
+        <body>
+            <div id="viewDiv"></div>
+        </body>
+    </html>
 </apex:page>
