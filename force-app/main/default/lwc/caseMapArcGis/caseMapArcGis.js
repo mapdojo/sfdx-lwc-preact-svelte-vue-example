@@ -34,6 +34,7 @@ export default class CaseMapArcGis extends LightningElement {
 
     initializeMap() {
         try {
+            // ArcGis.esriConfig.assetsPath = "./core/assets";
             const mapDiv = this.template.querySelector("div.map");
             console.debug("LA");
             const webmap = new ArcGis.WebMap({
