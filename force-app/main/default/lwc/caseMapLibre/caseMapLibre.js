@@ -28,6 +28,7 @@ export default class CaseMapLibre extends LightningElement {
                         variant: "error"
                     })
                 );
+                console.error("Error in renderedCallback", error);
             });
     }
 
@@ -37,13 +38,35 @@ export default class CaseMapLibre extends LightningElement {
             console.debug("LA");
             this.map = new maplibregl.Map({
                 container: mapDiv, // container id
-                style: MAPLIBRE + "/style.json", // style URL
+                style: {
+                    version: 8,
+                    sources: {
+                        "raster-tiles": {
+                            type: "raster",
+                            tiles: [
+                                "https://stamen-tiles.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.jpg"
+                            ],
+                            tileSize: 256,
+                            attribution:
+                                'Map tiles by <a target="_top" rel="noopener" href="http://stamen.com">Stamen Design</a>, under <a target="_top" rel="noopener" href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a target="_top" rel="noopener" href="http://openstreetmap.org">OpenStreetMap</a>, under <a target="_top" rel="noopener" href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>'
+                        }
+                    },
+                    layers: [
+                        {
+                            id: "simple-tiles",
+                            type: "raster",
+                            source: "raster-tiles",
+                            minzoom: 0,
+                            maxzoom: 22
+                        }
+                    ]
+                },
                 center: [0, 0], // starting position [lng, lat]
                 zoom: 1 // starting zoom
             });
             console.debug("LALA");
         } catch (error) {
-            console.error(error.message);
+            console.error("Error in initializeMap", error);
         }
     }
 }
