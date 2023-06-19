@@ -42,7 +42,7 @@
                     "esri/layers/FeatureLayer"
                 ], function (esriConfig, WebMap, MapView, FeatureLayer) {
                     esriConfig.apiKey =
-                        "Pvdz0fe5a9LtIHO1z2npA1uDjizjyPuxAvUyngnnw8NxjH2X0nhFQFZy4GjNOyZx9_Pz7oYJWW3eGMJ_nM0MpibiqMCEMkoq42sZT8zNryFMqBf2NZF3c1bKG_CQa5VxcPlAls2542qa76uG95F9xQ..";
+                        "JgdqA-MeP8fFX6QdXSwNdJMsWCso8Xu_xE83w5F7RU6UM-1IXFLHmWDz9iGbQ5WNSbGJw1EkVrfV_ggvTMmfU5VZVOz1y_Wbz8yHcu61ALqwGnj8QgkzXT4sEePCkOUuaBprYRTtur2dyBA4pD8_Jw..";
 
                     const map = new WebMap({
                         portalItem: {
