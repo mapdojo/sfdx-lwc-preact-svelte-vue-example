@@ -13,6 +13,8 @@ export default class CaseMapArcGis extends LightningElement {
         }
         this.mapInitialized = true;
 
+        console.debug("ARCGIS", ARCGIS);
+
         Promise.all([
             loadScript(this, ARCGIS + "/arcgis.js"),
             loadStyle(this, ARCGIS + "/core/assets/esri/themes/light/main.css")
@@ -34,7 +36,7 @@ export default class CaseMapArcGis extends LightningElement {
 
     initializeMap() {
         try {
-            // ArcGis.esriConfig.assetsPath = "./core/assets";
+            // ArcGis.esriConfig.assetsPath = ARCGIS + "/core/assets";
             const mapDiv = this.template.querySelector("div.map");
             console.debug("LA");
             const webmap = new ArcGis.WebMap({
