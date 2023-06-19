@@ -7,39 +7,28 @@ import ARCGIS from "@salesforce/resourceUrl/arcgis";
 export default class CaseMapArcGis extends LightningElement {
     map = null;
 
-    renderedCallback() {
-        if (this.mapInitialized) {
-            return;
-        }
-        this.mapInitialized = true;
+    async renderedCallback() {
+        try {
+            if (this.mapInitialized) {
+                return;
+            }
+            this.mapInitialized = true;
 
-        console.debug("ARCGIS", ARCGIS);
+            console.debug("ARCGIS", ARCGIS);
 
-        Promise.all([
-            loadScript(this, ARCGIS + "/arcgis.js"),
-            loadStyle(
+            await loadScript(this, ARCGIS + "/arcgis.js");
+            await loadStyle(
                 this,
                 "https://js.arcgis.com/4.27/esri/themes/light/main.css"
-            )
-        ])
-            .then(() => {
-                this.initializeMap();
-            })
-            .catch((error) => {
-                // this.dispatchEvent(
-                //     new ShowToastEvent({
-                //         title: "Error loading MapLibre",
-                //         message: error.message,
-                //         variant: "error"
-                //     })
-                // );
-                console.error("Error in renderedCallback", error);
-            });
+            );
+            this.initializeMap();
+        } catch (error) {
+            console.error("Error in renderedCallback", error);
+        }
     }
 
     initializeMap() {
         try {
-            // ArcGis.esriConfig.assetsPath = ARCGIS + "/core/assets";
             const mapDiv = this.template.querySelector("div.map");
             console.debug("LA");
             const webmap = new ArcGis.WebMap({
