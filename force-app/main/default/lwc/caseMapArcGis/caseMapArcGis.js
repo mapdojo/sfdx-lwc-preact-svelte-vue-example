@@ -17,7 +17,10 @@ export default class CaseMapArcGis extends LightningElement {
 
         Promise.all([
             loadScript(this, ARCGIS + "/arcgis.js"),
-            loadStyle(this, ARCGIS + "/core/assets/esri/themes/light/main.css")
+            loadStyle(
+                this,
+                "https://js.arcgis.com/4.27/esri/themes/light/main.css"
+            )
         ])
             .then(() => {
                 this.initializeMap();
@@ -30,7 +33,7 @@ export default class CaseMapArcGis extends LightningElement {
                 //         variant: "error"
                 //     })
                 // );
-                console.error(error);
+                console.error("Error in renderedCallback", error);
             });
     }
 
@@ -50,7 +53,7 @@ export default class CaseMapArcGis extends LightningElement {
             });
             console.debug("LALA");
         } catch (error) {
-            console.error(error.message);
+            console.error("Error in initializeMap", error);
         }
     }
 }
