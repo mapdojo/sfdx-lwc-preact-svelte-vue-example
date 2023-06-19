@@ -29,16 +29,29 @@ export default class CaseMapArcGis extends LightningElement {
 
     initializeMap() {
         try {
+            ArcGis.esriConfig.apiKey = "";
             const mapDiv = this.template.querySelector("div.map");
             console.debug("LA");
             const webmap = new ArcGis.WebMap({
                 portalItem: {
-                    id: "974c6641665a42bf8a57da08e607bb6f"
+                    id: "67bf77a05cd14087856ff68f585b054e"
                 }
             });
             const view = new ArcGis.MapView({
                 map: webmap,
                 container: mapDiv
+            });
+            view.when(function () {
+                // MapView is now ready for display and can be used. Here we will
+                // use goTo to view a particular location at a given zoom level and center
+                view.goTo({
+                    center: [144.8779, -37.795], // Longitude, latitude
+                    zoom: 13 // Zoom level
+                });
+            }).catch(function (err) {
+                // A rejected view indicates a fatal error making it unable to display.
+                // Use the errback function to handle when the view doesn't load properly
+                console.error("MapView rejected:", err);
             });
             console.debug("LALA");
         } catch (error) {
